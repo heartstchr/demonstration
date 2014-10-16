@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> My first WEBGL :)</title>
+<!--include your three.js library-->
+<link rel="stylesheet" href="WebGLBook.css" />
+<script src="http://threejs.org/build/three.min.js"></script>
+<script src="RequestAnimationFrame.js"></script>
+<script>
+alert('what the fuck');
+var renderer=null,scene=null,camera=null,cube=null,animating=false;
+
+function onLoad()
+{
+	 alert("whT THE fuck");
+  //container to contain the webgl
+  var container = document.getElementById("container");
+ 
+  //renderer to render into container
+  var renderer = new THREE.WebGLRenderer({ antialias:true });
+  renderer.setSize(container.offsetWidth,container.offsetHeight);
+  container.appendChild(renderer.domElement);
+  
+  //the place where some action occur
+  var scene = new THREE.Scene();
+  
+  // creating a camera and add it to scene
+  var camera = new THREE.PerspectiveCamera(45,container.offsetWidth/container.offsetHeight,1,4000);
+  camera.position.set(0,0,3);
+  scene.add(camera);
+  
+  //creating a directional light to show off the object
+  var light=new  THREE.DirectionalLight(0xffffff,1.5);
+  light.position.set(0,0,1);
+  scene.add(light);
+  //create a shaded,texture-mapped cube and it to the scene
+		//first create the texture map
+		var mapUrl="img/logo2.jpg";
+		var map=THREE.ImageUtils.loadTexture(mapUrl);
+		//now creat a phong material(smoothen the edges) to show shading pass in the map
+		var material = new THREE.MeshPhongMaterial({map:map});
+		//create the cube geometry
+		var geomatry= new THREE.CubeGeometry(1,1,1);
+		//put the geometri and material together paste the image to face of cube
+		cube= new THREE.Mesh(geometry,material);
+		//turn it toward the scene or we wont' see the cube shape!
+		cube.rotation.x = Math.PI/5;
+		cube.rotation.y = Math.PI/5;
+		//add the cube to our scene
+		scene.add(cube);
+	//ADD a mouse up handler to toggle the animation
+	addMouseHandler();
+	//run our render loop
+	run();
+}
+  
+  function run(){
+		//render the scene
+		renderer.render(scene,camera);
+		//spin the cube for next frame
+		if(animating)
+		{
+			cube.rotation.y = 0.01;
+		}
+		//ask for another frame
+		requestAnimationFrame(run);
+  }
+  function addMouseHandler(){
+		var dom renderer.domElement;
+		dom.addEventListener('mouseup',onMouseUp,false);
+  }
+  
+  function onMouseUp(event){
+		event.preventDefault();
+		animating = !animating;  
+  }
+</script>
+
+</head>
+<body onLoad="onLoad();" style="">
+<center><h1> Welcome to WebGL with Animation </h1></center>
+<div id="container" style="width:95%; height:80%; bottom:0; position:absolute"> <p>hi</p></div>
+
+<div id="prompt" style="width:95%; height:80%; bottom:0; position:absolute;" >
+Click to animate the cube
+</div>
+</body>
+</html>

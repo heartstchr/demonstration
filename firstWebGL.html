@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> My first WEBGL :)</title>
+<!--include your three.js library-->
+<script src="http://threejs.org/build/three.min.js"></script>
+
+<script>
+function onLoad(){
+
+  //container to contain the webgl
+  var container = document.getElementById("container");
+  
+  //renderer to render into container
+  var renderer = new THREE.WebGLRenderer();
+  renderer.setSize(container.offsetWidth,container.offsetHeight);
+  container.appendChild(renderer.domElement);
+  
+  //the place where some action occur
+  var scene = new THREE.Scene();
+  
+  // creating a camera and add it to scene
+  var camera = new THREE.PerspectiveCamera(45,container.offsetWidth/container.offsetHeight,1,4000);
+  camera.position.set(0,0,3.333);
+  scene.add(camera);
+  
+  //now,create a square and add it to scene
+  var geometry = new THREE.PlaneGeometry(1,2);
+  var geometry2 = new THREE.PlaneGeometry(2,1);
+  var mesh = new THREE.Mesh(geometry,new THREE.MeshBasicMaterial());
+  var mesh2 = new THREE.Mesh(geometry2,new THREE.MeshBasicMaterial());
+  scene.add(mesh);
+  scene.add(mesh2);
+  
+  //render it(give back to screen)
+  renderer.render(scene,camera);
+  
+}
+</script>
+
+</head>
+<body onLoad="onLoad();">
+<div id="container" style="width:500px; height:500px; background-color:#000000">
+
+</div>
+</body>
+</html>

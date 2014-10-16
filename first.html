@@ -1,0 +1,22 @@
+<DOCTYPE html>
+<html>
+<head>
+<title> My first WEBGL :)</title>
+<!--include your three.js library-->
+<script src=""></script>
+<script>
+function onLoad(){
+  var container = document.getElementById("container");
+  var renderer = new THREE.WebGLRenderer();
+  renderer.setSize(container.offsetWidth,container.offsetHeight)
+
+}
+</script>
+
+</head>
+<body onLoad="onLoad()">
+<div id="container" style="width:auto; height:500px; background-color:#000000">
+
+</div>
+</body>
+</html>
