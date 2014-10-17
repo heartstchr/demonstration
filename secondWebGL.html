@@ -7,8 +7,11 @@
 <script src="http://threejs.org/build/three.min.js"></script>
 <script src="RequestAnimationFrame.js"></script>
 <script>
-alert('what the fuck');
-var renderer=null,scene=null,camera=null,cube=null,animating=false;
+var renderer = null,
+scene = null,
+camera = null,
+cube = null,
+animating = false;
 
 function onLoad()
 {
@@ -77,9 +80,9 @@ function onLoad()
 </script>
 
 </head>
-<body onLoad="onLoad();" style="">
+<body onLoad="onLoad()" >
 <center><h1> Welcome to WebGL with Animation </h1></center>
-<div id="container" style="width:95%; height:80%; bottom:0; position:absolute"> <p>hi</p></div>
+<div id="container" style="width:95%; height:80%; bottom:0; position:absolute"></div>
 
 <div id="prompt" style="width:95%; height:80%; bottom:0; position:absolute;" >
 Click to animate the cube
